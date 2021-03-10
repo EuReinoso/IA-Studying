@@ -17,6 +17,7 @@ class Adjacent:
     def __init__(self,vertex,cost):
         self.vertex = vertex
         self.cost = cost
+        self.astar_distance = vertex.obj_distance + self.cost
 
 
 class Grafo:
