@@ -82,5 +82,3 @@ class Grafo:
     bucharest.add_adjacent(Adjacent(giurgiu, 90))
 
 
-grafo = Grafo()
-grafo.arad.print_adjacents()

@@ -4,7 +4,7 @@ class OrderedVector:
     def __init__(self,capacity):
         self.capacity = capacity
         self.last_position = -1
-        self.valors = numpy.empty(self.capacity,dtype = int)
+        self.valors = numpy.empty(self.capacity,dtype = object)
 
     def print_valors(self):
         if self.last_position == -1:
@@ -14,14 +14,14 @@ class OrderedVector:
             for i in range(self.last_position + 1):
                 print(i,"-",self.valors[i])
 
-    def insert(self,val):
+    def insert(self,vertex):
         if self.last_position == self.capacity -1:
             print("Full Vector")
             return
         pos = 0
         for i in range(self.last_position + 1):
             pos = i
-            if self.valors[i] > val:
+            if self.valors[i].obj_distance > vertex.obj_distance:
                 break
             if i == self.last_position:
                 pos = i + 1
@@ -31,17 +31,6 @@ class OrderedVector:
             self.valors[x + 1] = self.valors[x]
             x -= 1
 
-        self.valors[pos] = val
+        self.valors[pos] = vertex
         self.last_position += 1
 
-
-vector = OrderedVector(5)
-
-vector.insert(2)
-vector.insert(7)
-vector.insert(1)
-vector.insert(4)
-
-
-
-vector.print_valors()
