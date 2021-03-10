@@ -15,7 +15,9 @@ class AEstrela:
         else:
             cities = OrderedVector(len(actual.adjacents),'estrela')
             for adj in actual.adjacents:
-                cities.insert(adj)
+                if adj.vertex.visit == False:
+                    adj.vertex.visit = True
+                    cities.insert(adj)
         
            
             self.seach(cities.valors[0].vertex)
