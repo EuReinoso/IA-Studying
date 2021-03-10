@@ -1,7 +1,7 @@
 from grafo import Grafo,Vertex,Adjacent
 from vetorOrdenado import OrderedVector
 
-class Gulosa:
+class AEstrela:
     def __init__(self,objective):
         self.objective = objective
         self.found = False
@@ -13,13 +13,13 @@ class Gulosa:
         if actual == self.objective:
             self.found = True
         else:
-            cities = OrderedVector(len(actual.adjacents),'a')
+            cities = OrderedVector(len(actual.adjacents),'estrela')
             for adj in actual.adjacents:
                 cities.insert(adj)
         
-            if cities.valors[0] != None:
-                self.seach(cities.valors[0].vertex)
-    
+           
+            self.seach(cities.valors[0].vertex)
 
-gulosa = Gulosa(Grafo().bucharest)
-gulosa.seach(Grafo().arad)
+
+estrela = AEstrela(Grafo().bucharest)
+estrela.seach(Grafo().timisoara)

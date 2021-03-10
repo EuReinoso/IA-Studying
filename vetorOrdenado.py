@@ -22,10 +22,10 @@ class OrderedVector:
         pos = 0
         for i in range(self.last_position + 1):
             pos = i
-            if self.command == 'g':
+            if self.command == 'gulosa':
                 if self.valors[i].obj_distance > vertex.obj_distance:
                     break
-            if self.command == 'a':
+            if self.command == 'estrela':
                 if self.valors[i].astar_distance > vertex.astar_distance:
                     break
             if i == self.last_position:

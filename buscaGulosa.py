@@ -13,13 +13,13 @@ class Gulosa:
         if actual == self.objective:
             self.found = True
         else:
-            cities = OrderedVector(len(actual.adjacents),'g')
+            cities = OrderedVector(len(actual.adjacents),'gulosa')
             for adj in actual.adjacents:
                 cities.insert(adj.vertex)
 
             if cities.valors[0] != None:
                 self.seach(cities.valors[0])
-    
+
 
 gulosa = Gulosa(Grafo().bucharest)
 gulosa.seach(Grafo().arad)
