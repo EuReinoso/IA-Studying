@@ -1,5 +1,10 @@
 
-
+people = [('Lisboa','LIS'),
+        ('Madrid','MAD'),
+        ('Paris','CDG'),
+        ('Dublin','DUB'),
+        ('Bruxelas','BRU'),
+        ('Londres','LHR')]
 
 flights_data = {}
 def gen_data(data,path):
