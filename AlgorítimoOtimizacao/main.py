@@ -1,12 +1,5 @@
 
-people = [('Lisboa', 'LIS'),
-        ('Madrid', 'MAD'),
-        ('Paris', 'CDG'),
-        ('Dublin', 'DUB'),
-        ('Bruxelas', 'BRU'),
-        ('Londres', 'LHR')]
-
-
+import mlrose
 
 def gen_data(path):
     data = {}
@@ -46,10 +39,18 @@ def fitness_function(schedule,data):
     return total_price
 
 
+people = [('Lisboa', 'LIS'),
+        ('Madrid', 'MAD'),
+        ('Paris', 'CDG'),
+        ('Dublin', 'DUB'),
+        ('Bruxelas', 'BRU'),
+        ('Londres', 'LHR')]
+
 flights_data = {}
 flights_data = gen_data('AlgorítimoOtimizacao/flights.txt')
 destination = 'FCO'
 schedule = [1,0, 3,2, 7,1, 6,3, 2,4, 5,3]
 
-print_flights(schedule,flights_data)
-print(fitness_function(schedule,flights_data))
+fitness =  mlrose.CustomFitness(fitness_function)
+
+problem = mlrose.DiscretedOpt(lenght=12, fitness_fn=fitness, maximize=False, max_val=10)
