@@ -32,8 +32,13 @@ def individual_cost(population,index):
         sum += i
     return sum
 
+def print_population(population):
+    index = 0
+    for individual in population:
+        print(individual, individual_cost(population,index))
+        index +=1
 
 population = gen_population(POPULATION_SIZE,MINIMUM,MAXIMUM,INDIVIDUAL_SIZE)
+print_population(population)
 
-print(individual_cost(population,0))
 
