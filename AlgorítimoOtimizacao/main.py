@@ -1,6 +1,4 @@
 
-import mlrose
-
 def gen_data(path):
     data = {}
     for line in open(path):
@@ -51,6 +49,10 @@ flights_data = gen_data('AlgorítimoOtimizacao/flights.txt')
 destination = 'FCO'
 schedule = [1,0, 3,2, 7,1, 6,3, 2,4, 5,3]
 
-fitness =  mlrose.CustomFitness(fitness_function)
+# fitness =  mlrose.CustomFitness(fitness_function(schedule,flights_data))
 
-problem = mlrose.DiscretedOpt(lenght=12, fitness_fn=fitness, maximize=False, max_val=10)
+# problem = mlrose.DiscretedOpt(lenght=12, fitness_fn=fitness, maximize=False, max_val=10)
+
+# # best_solution, best_cost = mlrose.hill_climb(problem)
+
+# print_flights(best_solution,flights_data)
