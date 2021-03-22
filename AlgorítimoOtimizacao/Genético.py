@@ -5,8 +5,7 @@ O objetivo desse algorítimo vai ser:
 Dada uma lista de vetores alearótios, o resultado da soma de seus componentes
 tem que ser o menor possível. Ou seja, o melhor resultado seria [0,0,0,0...]
 """
-
-from random import randint
+import random,numpy
 
 MINIMUM = 0
 MAXIMUM = 100
@@ -14,16 +13,16 @@ MAXIMUM = 100
 INDIVIDUAL_SIZE = 5
 POPULATION_SIZE = 5
 
-def gen_vector(min_val,max_val,individual_size):
+def gen_vector(individual_size):
     vector = []
     for i in range(individual_size):
-        vector.append(randint(min_val,max_val))
+        vector.append(random.randint(MINIMUM,MAXIMUM))
     return vector
 
-def gen_population(population_size,min_val,max_val,individual_size):
+def gen_population(population_size,individual_size):
     population = []
     for i in range(population_size):
-        population.append(gen_vector(min_val,max_val,individual_size))
+        population.append(gen_vector(individual_size))
     return population
 
 def individual_cost(individual):
@@ -46,21 +45,30 @@ def best_individual(population):
     return best
 
 def mutation(individual):
-    vector = individual
-    for i in range(len(vector)):
-        if randint(1,100) <= 30:
-            vector[i] = randint(MINIMUM,MAXIMUM)
+    vector = []
+    for i in range(len(individual)):
+        if random.randint(1,100) <= 30: 
+            vector.append(random.randint(MINIMUM,MAXIMUM)) 
+        else:
+            vector.append(individual[i])
     return vector
 
+def gen_new_population(individual):
+    population = []
+    for i in range(POPULATION_SIZE):
+        random.seed()
+        population.append(mutation(individual))
+    return population
 
 
-population = gen_population(POPULATION_SIZE,MINIMUM,MAXIMUM,INDIVIDUAL_SIZE)
-print_population(population)
-
+population = gen_population(POPULATION_SIZE,INDIVIDUAL_SIZE)
 best_individual = best_individual(population)
 
-print(best_individual)
-print(mutation(best_individual))
+print_population(population)
+print()
+print(best_individual,individual_cost(best_individual))
+print()
+print("\n", print_population(gen_new_population(best_individual)))
 
 # while individual_cost(best_individual) > 0:
 #     print("\nBest:",best_individual, individual_cost(best_individual))
