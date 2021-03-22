@@ -45,13 +45,27 @@ def best_individual(population):
             best_sum = individual_cost(individual)
     return best
 
+def mutation(individual):
+    vector = individual
+    for i in range(len(vector)):
+        if randint(1,100) <= 30:
+            vector[i] = randint(MINIMUM,MAXIMUM)
+    return vector
+
+
 
 population = gen_population(POPULATION_SIZE,MINIMUM,MAXIMUM,INDIVIDUAL_SIZE)
 print_population(population)
 
 best_individual = best_individual(population)
 
-print("\nBest:",best_individual, individual_cost(best_individual))
+print(best_individual)
+print(mutation(best_individual))
+
+# while individual_cost(best_individual) > 0:
+#     print("\nBest:",best_individual, individual_cost(best_individual))
+
+
 
 
 
