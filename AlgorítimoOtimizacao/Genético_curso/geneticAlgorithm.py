@@ -17,4 +17,7 @@ class geneticAlgorithm:
         self.population = sorted(self.population,
                                 key= lambda population:population.grade,
                                 reverse = True)
-
+    
+    def best_individual(self,invdividual):
+        if individual.grade > self.best_solution.grade:
+            self.best_solution = individual
