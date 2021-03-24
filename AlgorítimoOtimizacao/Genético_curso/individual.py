@@ -43,4 +43,12 @@ class Individual:
         sons[1].chromosome = son2
 
         return sons
-
+    
+    def mutation(self,mutation_rate):
+        for i in range(len(self.chromosome)):
+            if random() < mutation_rate:
+                if self.chromosome[i] == '1':
+                    self.chromosome[i] = '0'
+                else:
+                    self.chromosome[i] = '1'
+        return self
