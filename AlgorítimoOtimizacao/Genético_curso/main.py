@@ -1,7 +1,6 @@
 from product import Product
 
 product_list = []
-
 product_list.append(Product("Geladeira Dako", 0.751, 999.90))
 product_list.append(Product("Iphone 6", 0.0000899, 2911.12))
 product_list.append(Product("TV 55' ", 0.400, 4346.99))
@@ -16,3 +15,15 @@ product_list.append(Product("Geladeira Brastemp", 0.635, 849.00))
 product_list.append(Product("Geladeira Consul", 0.870, 1199.89))
 product_list.append(Product("Notebook Lenovo", 0.498, 1999.90))
 product_list.append(Product("Notebook Asus", 0.527, 3999.00))
+
+
+def gen_lists():
+    names = []
+    spaces = []
+    valors = []
+    for product in product_list:
+        names.append(product.name)
+        spaces.append(product.space)
+        valors.append(product.price)
+    return names,spaces,valors
+
