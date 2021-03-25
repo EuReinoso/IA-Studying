@@ -1,4 +1,10 @@
 from product import Product
+from geneticAlgorithm import GeneticAlgorithm
+import time
+
+POPULATION_SIZE = 5
+LIMIT = 3
+MUTATION = 0.05
 
 product_list = []
 product_list.append(Product("Geladeira Dako", 0.751, 999.90))
@@ -24,7 +30,35 @@ def gen_lists():
     for product in product_list:
         names.append(product.name)
         spaces.append(product.space)
-        valors.append(product.price)
+        valors.append(product.valor)
     return names,spaces,valors
 
+
+names,spaces,valors = gen_lists()
+
+gen = GeneticAlgorithm(POPULATION_SIZE)
+gen.population_init(spaces,valors,LIMIT)
+
+while True:
+    for individual in gen.population:
+        individual.assessment()
+
+    gen.population_order()
+    gen.best_individual(gen.population[0])
+
+    print(gen.best_solution.chromosome, gen.best_solution.grade)
+    grade = gen.population_assessment()
+
+    new_population = []
+
+    for individual in range(0,gen.population_size,2):
+        father1 = gen.father_select(grade)
+        father2 = gen.father_select(grade)
+
+        sons = gen.population[father1].crossover(gen.population[father2])
+        new_population.append(sons[0].mutation(MUTATION))
+        new_population.append(sons[1].mutation(MUTATION))
+
+    gen.population = list(new_population)
+    time.sleep(1)
 

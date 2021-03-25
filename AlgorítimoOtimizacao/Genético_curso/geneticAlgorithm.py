@@ -1,6 +1,7 @@
 from individual import Individual
+from random import random
 
-class geneticAlgorithm:
+class GeneticAlgorithm:
     def __init__(self,population_size):
         self.population_size = population_size
         self.generation = 0
@@ -17,7 +18,7 @@ class geneticAlgorithm:
                                 key= lambda population:population.grade,
                                 reverse = True)
     
-    def best_individual(self,invdividual):
+    def best_individual(self,individual):
         if individual.grade > self.best_solution.grade:
             self.best_solution = individual
 
@@ -26,3 +27,14 @@ class geneticAlgorithm:
         for individual in self.population:
             grade += individual.grade
         return grade
+
+    def father_select(self,pop_assessment):
+        father = -1
+        valor = random() * pop_assessment
+        total = 0
+        i = 0
+        while i < len(self.population) and total < valor:
+            total += self.population[i].grade
+            father += 1
+            i += 1
+        return father
