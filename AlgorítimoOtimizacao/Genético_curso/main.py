@@ -27,3 +27,4 @@ def gen_lists():
         valors.append(product.price)
     return names,spaces,valors
 
+
