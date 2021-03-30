@@ -3,8 +3,10 @@ from geneticAlgorithm import GeneticAlgorithm
 from product import Product
 
 POPULATION_SIZE = 10
-MUTATION_RATE = 0.50
+MUTATION_RATE = 0.05
 LIMIT = 3
+
+NUM_GERATIONS = 10
 
 product_list = []
 
@@ -40,26 +42,9 @@ for product in product_list:
     ga = GeneticAlgorithm(POPULATION_SIZE)
     ga.population_init(spaces,valors,LIMIT)
 
-while True:
-    for individual in ga.population:
-        individual.assessment()
-
-    ga.population_order()
-    ga.best_individual(ga.population[0])
-    print(ga.best_solution.chromosome,ga.best_solution.grade)
-
-    grade = ga.population_assessment()
-
-    new_population = []
-
-    for individual in range(0,ga.population_size,2):
-        father1 = ga.father_select(grade)
-        father2 = ga.father_select(grade)
-
-        sons = ga.population[father1].crossover(ga.population[father2])
-
-        new_population.append(sons[0].mutation(MUTATION_RATE))
-        new_population.append(sons[1].mutation(MUTATION_RATE))
-
-    ga.population = list(new_population)
+i=0
+while i < NUM_GERATIONS:
+    ga.solve(MUTATION_RATE)
+    
     time.sleep(1)
+    i += 1
