@@ -40,3 +40,26 @@ class GeneticAlgorithm:
             i += 1
 
         return father_index
+
+    def solve(self,mutation_rate):
+        for individual in self.population:
+            individual.assessment()
+
+        self.population_order()
+        self.best_individual(self.population[0])
+        print(self.best_solution.chromosome,self.best_solution.grade)
+
+        grade = self.population_assessment()
+
+        new_population = []
+
+        for individual in range(0,self.population_size,2):
+            father1 = self.father_select(grade)
+            father2 = self.father_select(grade)
+
+            sons = self.population[father1].crossover(self.population[father2])
+
+            new_population.append(sons[0].mutation(mutation_rate))
+            new_population.append(sons[1].mutation(mutation_rate))
+
+        self.population = list(new_population)
